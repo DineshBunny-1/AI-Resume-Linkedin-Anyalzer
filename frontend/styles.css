@@ -1,0 +1,28 @@
+/* General Styling */
+body {
+    background-color: #f4f4f4;
+    font-family: "Arial", sans-serif;
+}
+
+/* Center the Title */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Custom File Uploader */
+div.stFileUploader {
+    border: 2px dashed #4CAF50;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+/* Result Box */
+.result-box {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
