@@ -1,0 +1,14 @@
+streamlit
+mysql-connector-python
+pandas
+pyresparser
+pdfminer.six
+plotly
+nltk
+spacy
+beautifulsoup4
+requests
+lxml
+numpy
+scikit-learn
+PyMuPDF
