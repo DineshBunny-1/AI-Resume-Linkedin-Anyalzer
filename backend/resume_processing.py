@@ -2,8 +2,13 @@ import fitz  # PyMuPDF for PDF extraction
 import spacy
 import re
 
-# Load NLP model
-nlp = spacy.load("en_core_web_sm")
+# ✅ Safely Load spaCy Model
+from spacy.cli import download
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
 
 # ✅ Skill Sets
 TECHNICAL_SKILLS = {
@@ -58,9 +63,9 @@ def calculate_ats_score(text):
     max_score = 100
 
     # ✅ 1. Keyword Matching (40 Points)
-    keywords = TECHNICAL_SKILLS.union(SOFT_SKILLS)  # Combine skill sets
+    keywords = TECHNICAL_SKILLS.union(SOFT_SKILLS)
     keyword_matches = sum(1 for word in keywords if word.lower() in text.lower())
-    score += min(keyword_matches * 2, 40)  # Adjusted for better weighting
+    score += min(keyword_matches * 2, 40)
 
     # ✅ 2. Formatting & Structure (20 Points)
     if any(term in text for term in ["Education", "Work Experience", "Skills", "Projects"]):
@@ -74,14 +79,12 @@ def calculate_ats_score(text):
 
     # ✅ 4. Readability & Length (15 Points)
     word_count = len(text.split())
-    if 300 <= word_count <= 1000:  # Improved readability range
+    if 300 <= word_count <= 1000:
         score += 15
-    elif word_count < 200:
-        score -= 5  # Less strict penalties for short resumes
-    elif word_count > 1200:
-        score -= 5  # Less strict penalties for long resumes
+    elif word_count < 200 or word_count > 1200:
+        score -= 5
 
-    return min(max(score, 0), max_score)  # Ensure score stays within 0-100%
+    return min(max(score, 0), max_score)
 
 # ✅ Analyze Resume Function
 def analyze_resume(pdf_path):
