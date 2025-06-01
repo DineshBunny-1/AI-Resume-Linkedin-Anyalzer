@@ -7,6 +7,22 @@ from job_match import calculate_match_score
 from database import save_to_db, fetch_past_resumes
 from linkedin_analyzer import fetch_linkedin_profile, analyze_linkedin_content
 
+# === Ensure Required spaCy & NLTK Models Installed ===
+import spacy
+import nltk
+
+# Load or download spaCy model
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    from spacy.cli import download
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
+
+# Download NLTK data (only once; safe to call multiple times)
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 # 🔧 Set wide layout
 st.set_page_config(layout="wide")
