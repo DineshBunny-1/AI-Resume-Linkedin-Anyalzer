@@ -1,0 +1,5 @@
+venv/
+backend/uploads/
+__pycache__/
+*.pyc
+backend/resume_data.db
