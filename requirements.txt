@@ -13,5 +13,4 @@ plotly
 beautifulsoup4
 requests
 lxml
---extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.2.2+cpu
+
