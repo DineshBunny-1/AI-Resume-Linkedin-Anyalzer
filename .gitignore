@@ -1,5 +1,8 @@
 venv/
-backend/uploads/
+uploads/
 __pycache__/
 *.pyc
+*.pyo
+backend/uploads/
 backend/resume_data.db
+.env
