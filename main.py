@@ -242,7 +242,8 @@ st.sidebar.markdown(
     unsafe_allow_html=True,
 )
 if "groq_api_key" not in st.session_state:
-    st.session_state.groq_api_key = "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"
+    # Load from Streamlit secrets if available, else empty
+    st.session_state.groq_api_key = st.secrets.get("GROQ_API_KEY", "")
 
 def _save_key():
     st.session_state.groq_api_key = st.session_state._groq_key_input
